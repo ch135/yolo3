@@ -18,9 +18,9 @@ YOLO3 base on tensorflow
 yolo3 计算速度快，但IOU不高，提高阙值时，性能减低。
 
 注意：
-   AP：训练边框与实际边框的IOU值
-   mAP: 每次循环训练中，不同类别的AP均值
-   AP50: 阙值为0.5的mAP
+   AP：训练边框与实际边框的IOU值。
+   mAP: 每次循环训练中，不同类别的AP均值。
+   AP50: 阙值为0.5的mAP。
    
 ## yolo2处理流程
 
