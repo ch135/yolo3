@@ -10,6 +10,9 @@ YOLO3 base on tensorflow
    （sum of squared error loss）求导更新。对于训练出来每个物体的9个预测边框，当目标概率大于阙值且为当
    前最大时，保留边框；当大于阙值但不为最大时，忽视边框；当边框没有目标物体时，惩罚objectness。最后保留
    一个边框。
+   <div>
+      <img src="https://github.com/ch135/yolo3/blob/master/function_img/box.png"/>
+   </div>
 5. 计算目标类型和概率。训练时，目标类型概率使用逻辑回归（Sigmoid functiion）进行计算，参数使用交叉熵误差
    （binary cross-entropy loss）进行更新。
 6. 计算mAP，衡量算法质量。
