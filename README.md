@@ -1,8 +1,8 @@
 # yolo3
    YOLO3 base on tensorflow
 ## yolo3处理流程
-1. 使用K-means聚类方法求出预测出9个预测边框的宽Pw, 高Ph。
-2. 使用 Drrknet-53 网络，求出基础特征矩阵。Darknet-53 在每层卷积网络后面都会batch-normalizatin处理。
+1. 使用**K-means**聚类方法求出预测出9个预测边框的宽Pw, 高Ph。
+2. 使用 **Drrknet-53** 网络，求出基础特征矩阵。Darknet-53 在每层卷积网络后面都会batch-normalizatin处理。
    能够加快模型收敛，并提供一定的正则化。
    <div>
       <img src="https://github.com/ch135/yolo3/blob/master/formule/network3.png"/>
@@ -33,12 +33,12 @@
 ## yolo1处理流程
       yolo1 将目标检测问题设计为回归问题。能更好的区分目标和普通物体，但对于边框定位会产生更大误差。
    
-1. 网格划分
+### 1. 网格划分
    yolo1将图片切分成古固定大小的 S*S小格。在特征提取后，会产生 B个预测边框，每个边框会产生对应的5个参数，分别是 x, y, w, h, confidence（置信      度），x, y代表下相对于网格单元边界框的中心坐标，h, w代表相对与整张图片的高和宽，confidence用于判断边框中是否有目标物体，同时判断物体是目标物体    的概率，公式如下图。
    <div>
       <img src="https://github.com/ch135/yolo3/blob/master/formule/formule2_1.png"/>
    </div>
-   为了提高网络更好得区分目标物体，网络对目标框和非目标框分别添加了参数（惩罚机制），发别为 Ycoord=5和 Ynoobj=0.5。
+   为了提高网络更好得区分目标物体，网络对目标框和非目标框分别添加了参数（惩罚机制），发别为 **Ycoord=5**和 **Ynoobj=0.5**。
    为更好选中小目标，网络对小于某个阙值的边框进行平方计算。
    
    同时，每个小格会产生一组条件概率，用于在非极大值抑制时，判断是否保留边框的条件，公式如下图。
@@ -49,8 +49,8 @@
    
    所以， 网络最终输出张量大小为 S*S*(B*5+C)。
  
-2. 网络设计
-   网络结合 GoogLeNet网络的思想，有24个卷积层，加上2个全连接层(FCL)，卷积核使用 1*1和 3*3的大小，网络结构如下图所示。
+### 2. 网络设计
+   网络结合 **GoogLeNet**网络的思想，有24个卷积层，加上2个全连接层(FCL)，卷积核使用 1*1和 3*3的大小，网络结构如下图所示。
    <div>
       <img src="https://github.com/ch135/yolo3/blob/master/formule/network2.png"/>
    </div>
@@ -58,9 +58,9 @@
    
    另外， 网络中交替使用 1*1和 3*3卷积核是为了减少特征矩阵空间维度
 
-3. 模型训练
+### 3. 模型训练
    网络的运行流程如下
-   1）Darknet-20: 提取图片的特征矩阵；
+   1）**Darknet-20**: 提取图片的特征矩阵；
    2）Detection: 通过两个FCL进行目标检测。
    3）Class probabilities and Bounding box coordinates：回归预测目标概率并选中目标
    
