@@ -20,13 +20,13 @@
    （binary cross-entropy loss）进行更新。
 6. 计算mAP，衡量算法质量。
 
-   总结：
-      yolo3 计算速度快，但IOU不高，提高阙值时，性能减低。
+总结：
+  yolo3 计算速度快，但IOU不高，提高阙值时，性能减低。
 
-   注意：
-      AP：训练边框与实际边框的IOU比值。<br/>
-      mAP: 每次循环训练中，不同类别的AP均值。<br/>
-      AP50: 阙值为0.5的mAP。
+注意：
+  AP：训练边框与实际边框的IOU比值。<br/>
+  mAP: 每次循环训练中，不同类别的AP均值。<br/>
+  AP50: 阙值为0.5的mAP。
    
 ## yolo2处理流程
 
@@ -64,7 +64,7 @@
    2）Detection: 通过两个FCL进行目标检测。
    3）Class probabilities and Bounding box coordinates：回归预测目标概率并选中目标
    
-   网络最后一层使用了线性激活函数，其他层使用了LReLU(0.1)函数；最后一层使用求和平方误差(sum-square error)，其他层使用的误差函数如下图：
+   网络最后一层使用了线性激活函数，其他层使用了LReLU(0.1)函数；最后一层使用求和平方误差(sum-square error)，其他层使用的误差函数如下图(MSE)：
    <div>
       <img src="https://github.com/ch135/yolo3/blob/master/formule/loss2.png"/>
    </div>
