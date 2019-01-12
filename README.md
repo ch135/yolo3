@@ -32,7 +32,7 @@
    当前 objects detection 问题
    - 能检测到物体少
    - 用于object detection 的数据集比较少
-   - 对比于其他算法，如Fast R-CNN, YOLO存在物体定位出错，低召回率的问题
+   - 对比于其他算法，如Fast R-CNN, YOLO存在物体定位出错，低召回率的问题<br/>
    基于以上问题，YOLO2 提出了一系列改进方法，使网络**Better, Faster, Stronger**
 ### Better
    - Btach Normalization<br/>
@@ -44,7 +44,7 @@
    - Convolutional With Anchor Boxes<br/>
       YOLO2 移除了 YOLO1的全连接层，使用 anchor boxes 来预测目标边框。同时，作者移除了一个池化层，提高特征矩阵的分辨率。
       
-      在检测模型中，将网络输入从448*448转化成 416*416，这能够得到一个 center cell(大目标物体更能占据特征矩阵中间位置)
+      在检测模型中，将网络输入从448x448转化成 416x416，这能够得到一个 center cell(大目标物体更能占据特征矩阵中间位置)
       
       
       
