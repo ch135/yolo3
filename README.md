@@ -35,13 +35,13 @@
    - 对比于其他算法，如Fast R-CNN, YOLO存在物体定位出错，低召回率的问题
    基于以上问题，YOLO2 提出了一系列改进方法，使网络**Better, Faster, Stronger**
 ### Better
-   - Btach Normalization
+   - Btach Normalization<br/>
       Batch Normalization 能加快网络的训练速度，同时提供正则化，避免过拟合。作者在每个conv层都加上了了BN层，同时去掉了原来模型中的drop out部分，这带来了2%的性能提升。
    
-   - Hight Resolution
+   - Hight Resolution<br/>
       在**检测模型**训练完成后，作者利用**ImageNet**数据集，首次将448*448分辨率的子块输入到网络进行**分类**训练，训练次数为10 epoch。这让网络更好地处理高分辨率图像。
       
-   - Convolutional With Anchor Boxes
+   - Convolutional With Anchor Boxes<br/>
       YOLO2 移除了 YOLO1的全连接层，使用 anchor boxes 来预测目标边框。同时，作者移除了一个池化层，提高特征矩阵的分辨率。
       
       在检测模型中，将网络输入从448*448转化成 416*416，这能够得到一个 center cell(大目标物体更能占据特征矩阵中间位置)
