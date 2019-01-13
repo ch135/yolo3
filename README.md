@@ -54,7 +54,7 @@
    - Dimension Cluster<br/>
      相比于手动设置anchor box边框大小，作者使用K-Means确定边框大小。聚类过程使用相似性度量，计算公式如下：
       <div>
-         <img src="YOLO2_1"/>
+         <img src="https://github.com/ch135/yolo3/blob/master/formule/YOLO2_1.png"/>
       </div>
       
       训练后确定 **k=5**使检测效率最高。
@@ -62,8 +62,8 @@
    - Direct location prediction<br/>
      延续YOLO V1的思想,边框位置，大小以及置信度的计算公式如下图所示：
       <div>
-         <img src="YOLO2_2"/>
-         <img src="YOLO2_3"/>
+         <img src="https://github.com/ch135/yolo3/blob/master/formule/YOLO2_2.png"/>
+         <img src="https://github.com/ch135/yolo3/blob/master/formule/YOLO2_3.png"/>
       </div>
       
       与YOLO V1不同的是，**分类Loss**的计算不再使用MSELoss，而是使用**交叉熵损失函数**。
@@ -89,7 +89,7 @@
       - 在每个卷积层后面使用**BN**，加快训练速度，归一化模型，增加模型训练的稳定性
    模型如下图所示：
    <div>
-      <img src="YOLO2_4"/>
+      <img src="https://github.com/ch135/yolo3/blob/master/formule/YOLO2_4.jpg"/>
    </div>
    
 ### Stronger
@@ -100,13 +100,13 @@
    - Hierarchical classficlation<br/>
       检测模型检测出物体后，使用[WordNet](https://zh.wikipedia.org/wiki/WordNet)对物体进行分类。WordNet基于概率统计的思想，分层次详细地判断物       体。例如：想要计算 Norflok terrir 的概率时，计算过程如下图所示：
       <div>
-         <img src="YOLO2_5"/>
+         <img src="https://github.com/ch135/yolo3/blob/master/formule/YOLO2_5.png"/>
       </div>
     
    - DataSet combination with WordTree<br/>
       WordNet 能将多个数据集的 label 关联在一起。如下图，将ImageNet 和 COCO关联在一起。
       <div>
-         <img src="YOLO2_6"/>
+         <img src="https://github.com/ch135/yolo3/blob/master/formule/YOLO2_6.png"/>
       </div>
    - Join classification and detection<br/>
       网络训练时将检测和分类结合起来一起训练<br/>
