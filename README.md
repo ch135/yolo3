@@ -1,6 +1,6 @@
 # yolo3
    YOLO3 base on tensorflow
-## yolo3处理流程
+## YOLOV3处理流程
 1. 使用**K-means**聚类方法求出预测出9个预测边框的宽Pw, 高Ph。
 2. 使用 **Drrknet-53** 网络，求出基础特征矩阵。Darknet-53 在每层卷积网络后面都会batch-normalizatin处理。
    能够加快模型收敛，并提供一定的正则化。
@@ -28,11 +28,12 @@
   mAP: 每次循环训练中，不同类别的AP均值。<br/>
   AP50: 阙值为0.5的mAP。
    
-## yolo2处理流程
+## YOLOV2处理流程
    当前objects detection问题
    - 能检测到物体少
    - 用于object detection 的数据集比较少
    - 对比于其他算法，如Fast R-CNN, YOLO存在物体定位出错，低召回率的问题<br/>
+   
    基于以上问题，YOLO2 提出了一系列改进方法，使网络**Better, Faster, Stronger**
 ### Better
    - Btach Normalization<br/>
@@ -65,7 +66,7 @@
          <img src="YOLO2_3"/>
       </div>
       
-      与YOLO V1不同的是，**分类 Loss**的计算不再使用MSELoss，而是使用**交叉熵损失函数**。
+      与YOLO V1不同的是，**分类Loss**的计算不再使用MSELoss，而是使用**交叉熵损失函数**。
       
    - Final-Gained Features
      受**Faster RCNN**和**SSD**方法中使用多个不同feature map提高算法对**不同分辨率目标物体的检测能力**的启发，加入了一个**pass-through层**，直    接将倒数第二层的26×26大小的feature map加进来。
@@ -79,9 +80,13 @@
       
      这使得YOLO V2适应与图像分辨率不同的场景，同时保留了精度度和速度。<br/>
 ### Faster
+   YOLOV1借鉴GoogLeNet的网络模型，速度比VGG-16快，但精确度比VGG-16差。YOLOV2在YOLOV1的基础上，对检测模型和分类模型进行了更改。
    
-## yolo1处理流程
-      yolo1 将目标检测问题设计为回归问题。能更好的区分目标和普通物体，但对于边框定位会产生更大误差。
+   - 检测模型<br/>
+      结合VGG的思想，YOLOV2设计了Darknet-19网络。<br/>
+      - 在每个池化层后使用**双倍数目的3x3**卷积核
+## YOLOV1处理流程
+   YOLOV1 将目标检测问题设计为回归问题。能更好的区分目标和普通物体，但对于边框定位会产生更大误差。
      
 ### 1. 网格划分
    yolo1将图片切分成古固定大小的 SxS小格。在特征提取后，会产生 B个预测边框，每个边框会产生对应的5个参数，分别是 x, y, w, h, confidence（置信      度）
