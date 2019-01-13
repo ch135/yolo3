@@ -1,9 +1,9 @@
 # yolo3
    YOLO3 base on tensorflow
 ### Table of Contents
-   1.[YOLOV1](#YOLOV1)
-   1.[YOLOV2](#YOLOV2)
-   1.[YOLOV3](#YOLOV3)
+1.[YOLOV1](#YOLOV1)
+1.[YOLOV2](#YOLOV2)
+1.[YOLOV3](#YOLOV3)
 ## YOLOV3
 1. 使用**K-means**聚类方法求出预测出9个预测边框的宽Pw, 高Ph。
 2. 使用 **Drrknet-53** 网络，求出基础特征矩阵。Darknet-53 在每层卷积网络后面都会batch-normalizatin处理。
