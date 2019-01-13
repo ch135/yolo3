@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../12306/.idea/12306.iml" filepath="$PROJECT_DIR$/../12306/.idea/12306.iml" />
       <module fileurl="file://$PROJECT_DIR$/../LapSRN/.idea/LapSRN.iml" filepath="$PROJECT_DIR$/../LapSRN/.idea/LapSRN.iml" />
       <module fileurl="file://$PROJECT_DIR$/../tensorflow-yolo3/.idea/tensorflow-yolo3.iml" filepath="$PROJECT_DIR$/../tensorflow-yolo3/.idea/tensorflow-yolo3.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/yolo3.iml" filepath="$PROJECT_DIR$/.idea/yolo3.iml" />
