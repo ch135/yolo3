@@ -85,6 +85,38 @@
    - 检测模型<br/>
       结合VGG的思想，YOLOV2设计了Darknet-19网络。<br/>
       - 在每个池化层后使用**双倍数目的3x3**卷积核
+      - 使用均值池化层压缩特征矩阵
+      - 在每个卷积层后面使用**BN**，加快训练速度，归一化模型，增加模型训练的稳定性
+   模型如下图所示：
+   <div>
+      <img src="YOLO2_4"/>
+   </div>
+   
+### Stronger
+   训练时，将检测和分类的数据集混合在一起。当网络看到检测标志的图片时，使用YOLOV2误差函数进行训练；当看到分类标志的图片时，使用分类的误差函数训练。
+   
+   其中，检测数据集只有不同物种的标志；分类数据集有详细的物体标志。
+   
+   这能让网络检测出数据集没有的物体（注意与物种的区别）。
+   =================================================================
+   - Hierarchical classficlation
+      检测模型检测出物体后，使用[WordNet](https://zh.wikipedia.org/wiki/WordNet)对物体进行分类。WordNet基于概率统计的思想，分层次详细地判断物       体。例如：想要计算 Norflok terrir 的概率时，计算过程如下图所示：
+      <div>
+         <img src="YOLO2_5"/>
+      </div>
+    
+   - DataSet combination with WordTree
+      WordNet 能将多个数据集的 label 关联在一起。如下图，将ImageNet 和 COCO关联在一起。
+      <div>
+         <img src="YOLO2_6"/>
+      </div>
+   - Join classification and detection
+      网络训练时将检测和分类结合起来一起训练<br/>
+      
+      在检测时COCO数据集；分类时使用ImageNet数据集<br/>
+      
+      检测图像时，方向传播更新检测模型所有参数；图像分类时，仅更新对应类的参数。<br/>
+      
 ## YOLOV1处理流程
    YOLOV1 将目标检测问题设计为回归问题。能更好的区分目标和普通物体，但对于边框定位会产生更大误差。
      
