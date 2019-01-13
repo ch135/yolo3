@@ -51,7 +51,7 @@
       
       使用anchor后，accuracy降低了，但recall提高了。这是由于原来每个grid cell内部只有2个bounding box，造成recall不高；生成多个边框，accuracy会       下降。
       
-   - Dimension Cluster
+   - Dimension Cluster<br/>
      相比于手动设置anchor box边框大小，作者使用K-Means确定边框大小。聚类过程使用相似性度量，计算公式如下：
       <div>
          <img src="YOLO2_1"/>
@@ -59,7 +59,7 @@
       
       训练后确定 **k=5**使检测效率最高。
       
-   - Direct location prediction
+   - Direct location prediction<br/>
      延续YOLO V1的思想,边框位置，大小以及置信度的计算公式如下图所示：
       <div>
          <img src="YOLO2_2"/>
@@ -68,12 +68,12 @@
       
       与YOLO V1不同的是，**分类Loss**的计算不再使用MSELoss，而是使用**交叉熵损失函数**。
       
-   - Final-Gained Features
+   - Final-Gained Features<br/>
      受**Faster RCNN**和**SSD**方法中使用多个不同feature map提高算法对**不同分辨率目标物体的检测能力**的启发，加入了一个**pass-through层**，直    接将倒数第二层的26×26大小的feature map加进来。
 
       在具体实现时，是将higher resolution（也就是26×26）的feature map stacking在一起。比如，原大小为26×26×512的feature map，因为我们要将其变为   13×13大小，所以，将在空间上相近的点移到后面的channel上去，这部分可以参考Darknet中reorg_layer的实现。
       
-   - Multi-Scale Training
+   - Multi-Scale Training<br/>
       **解决输入图像大小不一致的问题**
       
      网络中有conv和pooling层，没有全连接，所以适合不同大小图片的输入。在训练中，每隔一定的 epoch 就就随机改变网络的输入图像大小。由于我们的网络最     终降采样的比例是32，所以随机生成的图像大小为32的倍数，即{320,352,…,608}。<br/>
@@ -95,22 +95,20 @@
 ### Stronger
    训练时，将检测和分类的数据集混合在一起。当网络看到检测标志的图片时，使用YOLOV2误差函数进行训练；当看到分类标志的图片时，使用分类的误差函数训练。
    
-   其中，检测数据集只有不同物种的标志；分类数据集有详细的物体标志。
+   其中，检测数据集只有不同物种的标志；分类数据集有详细的物体标志。这能让网络检测出数据集没有的物体（注意与物种的区别）。<br/>
    
-   这能让网络检测出数据集没有的物体（注意与物种的区别）。<br/>
-   
-   - Hierarchical classficlation
+   - Hierarchical classficlation<br/>
       检测模型检测出物体后，使用[WordNet](https://zh.wikipedia.org/wiki/WordNet)对物体进行分类。WordNet基于概率统计的思想，分层次详细地判断物       体。例如：想要计算 Norflok terrir 的概率时，计算过程如下图所示：
       <div>
          <img src="YOLO2_5"/>
       </div>
     
-   - DataSet combination with WordTree
+   - DataSet combination with WordTree<br/>
       WordNet 能将多个数据集的 label 关联在一起。如下图，将ImageNet 和 COCO关联在一起。
       <div>
          <img src="YOLO2_6"/>
       </div>
-   - Join classification and detection
+   - Join classification and detection<br/>
       网络训练时将检测和分类结合起来一起训练<br/>
       
       在检测时COCO数据集；分类时使用ImageNet数据集<br/>
